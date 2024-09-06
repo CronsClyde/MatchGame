@@ -20,6 +20,7 @@ namespace MatchGame
         DispatcherTimer timer = new DispatcherTimer();
         int tenthsOfSeoncdsElapsed;
         int matchesFound;
+        int matchesFoundAnswer;
 
         TextBlock lastTextBlockClicked;
         bool findingMatch = false;
@@ -46,8 +47,20 @@ namespace MatchGame
                     "🦒","🦒",
                     "🐁","🐁",
                     "🐕‍🦺","🐕‍🦺",
-                    "🦇","🦇"
+                    "🦇","🦇",
+                    "🦀","🦀",
+                    "🐣","🐣",
+                    "🐬","🐬",
+                    "🐳","🐳",
+                    "🦦","🦦",
+                    "⭐" , "⭐",
+                    "☃️" ,"☃️",
+                    "🦐","🦐",
+                    "🍀","🍀",
+                    "🐧","🐧"
                 };
+
+                matchesFoundAnswer = animalEmoji.Count / 2;
 
                 Random random = new Random();
 
@@ -100,16 +113,17 @@ namespace MatchGame
         {
             tenthsOfSeoncdsElapsed++;
             TimerTextBlock.Text = (tenthsOfSeoncdsElapsed / 10F).ToString("0.0s");
-            if (matchesFound == 8)
+            if (matchesFound == matchesFoundAnswer)
             {
                 timer.Stop();
                 TimerTextBlock.Text = TimerTextBlock.Text + " - Play Again?";
+                MessageBox.Show("축하합니다!", "확인", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
         private void TimerTextBlock_MouseDown(object sender, EventArgs e)
         {
-            if (matchesFound == 8)
+            if (matchesFound == matchesFoundAnswer)
             {
                 SetupGame();
             }
